@@ -4322,12 +4322,56 @@ flexibility(document.documentElement);
                                                                 src="https://2047tirangamudra.in/wp-content/uploads/2024/07/india-450_256.gif"
                                                                 alt="" width="" height="0" loading="lazy" /></div>
                                                         <div class="uagb-ifb-title-wrap"></div>
-                                                        <div class="uagb-ifb-button-wrapper wp-block-button"><a href="#"
-                                                                class="uagb-infobox-cta-link wp-block-button__link"
-                                                                target="_self" rel="noopener noreferrer"
-                                                                onclick="return false;"><span
-                                                                    class="uagb-inline-editing">तिरंगा दान
-                                                                    करे</span></a></div>
+                                                        <div>
+                                                            <form action="/sumit" method="post">
+                                                                <table style="border: 1px solid black; width: 60%;margin: 0 auto">
+                                                                    <tr>
+                                                                        <td><label for="name">Name:</label></td>
+                                                                        <td><input type="text" id="name" name="name" ></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><label for="state">State:</label></td>
+                                                                        <td><input type="text" id="state" name="state" ></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><label for="pincode">PIN Code:</label></td>
+                                                                        <td><input type="text" id="pincode" name="pincode" ></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><label for="mobile">Mobile Number:</label></td>
+                                                                        <td><input type="tel" id="mobile" name="mobile" placeholder="+91 1234567890" ></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="2" style="text-align: center;">
+                                                                            <div class="uagb-ifb-button-wrapper wp-block-button">
+                                                                                <button
+                                                                                type="submit"
+                                                                                class="uagb-infobox-cta-link wp-block-button__link">
+                                                                                    <span class="uagb-inline-editing">
+                                                                                        तिरंगा दान करे
+                                                                                    </span>
+                                                                                </button>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                        
+                                                                    
+                                                                    <tr id="otpRow" style="display: none;">
+                                                                        <td><label for="otp">Enter OTP:</label></td>
+                                                                        <td><input type="text" id="otp" name="otp" required></td>
+                                                                    </tr>
+                                                                    <tr id="otpButtonRow" style="display: none;">
+                                                                        <td colspan="2" style="text-align: center;">
+                                                                            <button type="button" onclick="showOTPInput()">Submit OTP</button>
+                                                                        </td>
+                                                                    </tr>
+                        
+                        
+                                                                </table>
+                                                                
+                                                            </form>
+                            
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
