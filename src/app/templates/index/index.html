@@ -4036,6 +4036,18 @@ flexibility(document.documentElement);
             }
         }
     </style>
+    <style>
+        .flash-message {
+  background-color: rgba(255, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  color: white; /* Text color */
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+}
+
+    </style>
 </head>
 
 <body itemtype='https://schema.org/WebPage' itemscope='itemscope'
@@ -4322,8 +4334,13 @@ flexibility(document.documentElement);
                                                                 src="https://2047tirangamudra.in/wp-content/uploads/2024/07/india-450_256.gif"
                                                                 alt="" width="" height="0" loading="lazy" /></div>
                                                         <div class="uagb-ifb-title-wrap"></div>
-                                                        <div>
-                                                            <form action="/sumit" method="post">
+                                                        <div id="flash-messages">
+                                                            {% for message in get_flashed_messages() %}
+                                                              <div class="flash-message">{{ message }}</div>
+                                                            {% endfor %}
+                                                        </div>
+                                                        <div id="main_form" style="display: {{ show_form if show_form else 'None' }};">
+                                                            <form action="/submit" method="post">
                                                                 <table style="border: 1px solid black; width: 60%;margin: 0 auto">
                                                                     <tr>
                                                                         <td><label for="name">Name:</label></td>
@@ -4346,38 +4363,24 @@ flexibility(document.documentElement);
                                                                             <div class="uagb-ifb-button-wrapper wp-block-button">
                                                                                 <button
                                                                                 type="submit"
-                                                                                class="uagb-infobox-cta-link wp-block-button__link">
+                                                                                class="uagb-infobox-cta-link wp-block-button__link" onclick="myFunction()">
                                                                                     <span class="uagb-inline-editing">
                                                                                         तिरंगा दान करे
                                                                                     </span>
                                                                                 </button>
                                                                             </div>
                                                                         </td>
-                                                                    </tr>
-                        
-                                                                    
-                                                                    <tr id="otpRow" style="display: none;">
-                                                                        <td><label for="otp">Enter OTP:</label></td>
-                                                                        <td><input type="text" id="otp" name="otp" required></td>
-                                                                    </tr>
-                                                                    <tr id="otpButtonRow" style="display: none;">
-                                                                        <td colspan="2" style="text-align: center;">
-                                                                            <button type="button" onclick="showOTPInput()">Submit OTP</button>
-                                                                        </td>
-                                                                    </tr>
-                        
-                        
-                                                                </table>
-                                                                
-                                                            </form>
-                            
+                                                                    </tr>                   
+                                                                </table>                                                                
+                                                            </form>                            
+                                                        </div>
+
+                                                        <div id="myDiv" style="display: {{ show_done if show_done else 'None' }};">
+                                                            <h2>Thank you</h2>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
                                             <div class="wp-block-uagb-countdown uagb-block-a0173c2a">
                                                 <div
                                                     class="wp-block-uagb-countdown__box wp-block-uagb-countdown__box-days">
@@ -4410,8 +4413,6 @@ flexibility(document.documentElement);
                                             </div>
                                         </div>
 
-
-
                                         <div
                                             class="wp-block-uagb-counter uagb-block-1dfdb70d wp-block-uagb-counter--number">
                                             <span class="wp-block-uagb-counter__icon"><svg
@@ -4420,10 +4421,12 @@ flexibility(document.documentElement);
                                                         d="M366.2 256H400C461.9 256 512 306.1 512 368C512 388.9 498.6 406.7 480 413.3V464C480 490.5 458.5 512 432 512H80C53.49 512 32 490.5 32 464V413.3C13.36 406.7 0 388.9 0 368C0 306.1 50.14 256 112 256H145.8C175.7 256 200 231.7 200 201.8C200 184.3 190.8 168.5 180.1 154.8C167.5 138.5 160 118.1 160 96C160 42.98 202.1 0 256 0C309 0 352 42.98 352 96C352 118.1 344.5 138.5 331.9 154.8C321.2 168.5 312 184.3 312 201.8C312 231.7 336.3 256 366.2 256zM416 416H96V448H416V416z">
                                                     </path>
                                                 </svg></span>
-                                            <div class="wp-block-uagb-counter__number"><span
-                                                    class="uagb-counter-block-number" data-duration="1.5"
-                                                    data-to-value="65" data-from-value="1" data-delimiter=","></span>
+                                               
+                                            <div class="wp-block-uagb-counter__number">
+                                                <!-- <span class="uagb-counter-block-number" data-duration="1.5" data-to-value="65" data-from-value="1" data-delimiter=",">34</span>-->
+                                                <h1>{{count_value}}</h1>
                                             </div>
+                                            
                                             <div class="wp-block-uagb-counter__title">दाताओं की संख्या</div>
                                         </div>
 
