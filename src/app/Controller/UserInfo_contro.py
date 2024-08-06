@@ -5,8 +5,12 @@ from flask import url_for, flash, request, render_template
 
 def get_user_info_count():
     """Retrieves the count of the last ID in the UserInfo table."""
-    last_id = UserInfo.query.order_by(UserInfo.id.desc()).first().id
-    return last_id
+    user_info = UserInfo.query.order_by(UserInfo.id.desc()).first()
+    if user_info:
+        return user_info.id
+    else:
+        return 0  # Or any default value you prefer
+
 
 
 def add_userInfo():
