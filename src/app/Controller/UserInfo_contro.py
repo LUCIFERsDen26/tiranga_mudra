@@ -48,7 +48,7 @@ def add_userInfo():
         if reffred_by:
             referrer_exists = UserInfo.query.filter_by(reff_id=reffred_by).first()
             if not referrer_exists:
-                flash('Error: Referred by user not found.')
+                flash('Error: Referred Code, not found.')
                 return render_template("/index/index.html",show_done=False,show_form=True,count_value=get_user_info_count())
 
         try:
@@ -63,7 +63,7 @@ def add_userInfo():
             db.session.add(new_user)
             db.session.commit()
 
-            return render_template("/index/index.html",show_done=True,show_form=False,count_value=get_user_info_count())
+            return render_template("/index/index.html",show_done=True,reffrel_link=f"http://0.0.0.0:5000/reference/{reff_id}",reffrel_code=reff_id,show_form=False,count_value=get_user_info_count())
         except Exception as e:
             db.session.rollback()
             flash('Error: ' + str(e))
