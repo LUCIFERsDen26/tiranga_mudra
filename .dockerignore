@@ -145,3 +145,4 @@ ENV/
 .mypy_cache/
 
 *.db
+.vscode
