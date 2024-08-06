@@ -4038,16 +4038,16 @@ flexibility(document.documentElement);
     </style>
     <style>
         .flash-message {
-  background-color: rgba(255, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 5px;
-  color: white; /* Text color */
-  font-weight: bold;
-  text-align: center;
-  margin: 10px 0;
-}
+            background-color: rgba(255, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            color: white; /* Text color */
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+        }
 
-    </style>
+    </style>   
 </head>
 
 <body itemtype='https://schema.org/WebPage' itemscope='itemscope'
@@ -4344,19 +4344,23 @@ flexibility(document.documentElement);
                                                                 <table style="border: 1px solid black; width: 60%;margin: 0 auto">
                                                                     <tr>
                                                                         <td><label for="name">Name:</label></td>
-                                                                        <td><input type="text" id="name" name="name" ></td>
+                                                                        <td><input type="text" id="name" name="name" required></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><label for="state">State:</label></td>
-                                                                        <td><input type="text" id="state" name="state" ></td>
+                                                                        <td><input type="text" id="state" name="state" required></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><label for="pincode">PIN Code:</label></td>
-                                                                        <td><input type="text" id="pincode" name="pincode" ></td>
+                                                                        <td><input type="text" id="pincode" name="pincode" required></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><label for="mobile">Mobile Number:</label></td>
-                                                                        <td><input type="tel" id="mobile" name="mobile" placeholder="+91 1234567890" ></td>
+                                                                        <td><input type="tel" id="mobile" name="mobile" placeholder="+91 1234567890" required></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><label for="reffred_by">Reference Code:</label></td>
+                                                                        <td><input type="text" id="reffred_by" name="reffred_by" placeholder="A1B2C" ></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td colspan="2" style="text-align: center;">
@@ -4376,7 +4380,20 @@ flexibility(document.documentElement);
                                                         </div>
 
                                                         <div id="myDiv" style="display: {{ show_done if show_done else 'None' }};">
+                                                            <div>
                                                             <h2>Thank you</h2>
+                                                            </div>
+                                                            <div id="Reference_tab">
+                                                                <div id="reference-link">
+                                                                    <h5>Your Referral Link:</h5>
+                                                                    <h6>{{ reffrel_link }}</h6>                                    
+                                                                </div>
+                                                                <div id="reference-code">
+                                                                    <h5>Your Referral Code:</h5>                                                                    
+                                                                    <h6>{{ reffrel_code }}</h6>
+                                                                    
+                                                                </div>                                                                  
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
