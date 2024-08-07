@@ -10,7 +10,7 @@ Dockerfile
 
 /node_modules
 
-/migrations
+
 
 
 # https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
@@ -144,5 +144,6 @@ ENV/
 # mypy
 .mypy_cache/
 
-*.db
+*/*.db
 .vscode
+migrations

@@ -10,10 +10,10 @@ RUN pip install -r requirements.txt
 
 # Copy the rest of the application code
 COPY . .
-
+RUN chmod +x start.sh
 # Expose the port your Flask app will listen on
 EXPOSE 5000
 
 # Command to run the Flask app
-CMD ["start.sh"]
+CMD ["./start.sh"]
 
