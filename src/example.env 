@@ -1,3 +1,1 @@
-SECRET_KEY=averysecretkey
-DATABASE_URI=
-CONFIGURATION_SETUP="config.Config"
+CONFIGURATION_SETUP="config.DevelopmentConfig"
