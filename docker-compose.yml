@@ -19,7 +19,7 @@ services:
       - app_network
     restart: always
     deploy:
-      replicas: 3  # Specify the desired number of replicas
+      replicas: 1  # Specify the desired number of replicas
 
   user_info_db:
     container_name: user_info_db
