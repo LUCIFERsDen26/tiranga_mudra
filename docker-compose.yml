@@ -1,0 +1,37 @@
+version: '3.8'
+
+volumes:
+  user_info_db_vol:
+
+networks:
+  app_network:
+
+services:
+  tiranga_mudra:
+    
+    build:
+      context: .
+    ports:
+      - "5000"
+    depends_on:
+      - user_info_db
+    networks:
+      - app_network
+    restart: always
+    deploy:
+      replicas: 3  # Specify the desired number of replicas
+
+  user_info_db:
+    container_name: user_info_db
+    image: mysql:8
+    ports:
+      - "32000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: tiranga_mudra-ADMIN
+      MYSQL_DATABASE: user_info
+      MYSQL_USER: website
+      MYSQL_PASSWORD: website
+    networks:
+      - app_network
+    volumes:
+      - user_info_db_vol:/var/lib/mysql
