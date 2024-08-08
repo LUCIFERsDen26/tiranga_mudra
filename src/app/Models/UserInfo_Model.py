@@ -1,16 +1,17 @@
 from datetime import datetime
 from ..extensions import db
 
-class UserInfo(db.Model):
+from sqlalchemy import Column, Integer, String
 
+class UserInfo(db.Model):
    __tablename__ = "user_info"
-   id = db.Column(db.Integer,primary_key=True,autoincrement=True)
-   reff_id = db.Column(db.String,nullable=False,unique=True)
-   reff_by = db.Column(db.String,nullable=True)
-   mobile_no = db.Column(db.String, nullable=False,unique=True)   
-   name = db.Column(db.String, nullable=False)
-   sate = db.Column(db.String, nullable=False)
-   pin_code = db.Column(db.String, nullable=False)
+   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+   reff_id = db.Column(db.String(8), nullable=False, unique=True)
+   reff_by = db.Column(db.String(8), nullable=True)
+   mobile_no = db.Column(db.String(15), nullable=False, unique=True)
+   name = db.Column(db.String(30), nullable=False)
+   sate = db.Column(db.String(50), nullable=False)
+   pin_code = db.Column(db.String(10), nullable=False)
    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
 def __repr__(self):
