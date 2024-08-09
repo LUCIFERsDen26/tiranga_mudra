@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Check if .env file exists in src directory
+if [ ! -f src/.env ]; then
+  # Copy example.env to src directory
+  cp src/example.env src/.env
+  echo ".env file created in src directory"
+else
+  echo ".env file already exists in src directory"
+fi
+
 # Check for the existence of the migrations directory
 if [ -d "migrations" ]; then
   cd src/
