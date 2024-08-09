@@ -13,7 +13,8 @@ services:
     ports:
       - "5000"
     depends_on:
-      - user_info_db
+      user_info_db:
+        condition: service_healthy
     networks:
       - app_network
     restart: always
@@ -34,6 +35,11 @@ services:
       - app_network
     volumes:
       - user_info_db_vol:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-p3306"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
 
   nginx:
     container_name: nginx_webserver
