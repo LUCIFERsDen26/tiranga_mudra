@@ -4,6 +4,7 @@ cffi==1.17.0
 click==8.1.7
 cryptography==43.0.0
 Flask==3.0.3
+Flask-Cors==4.0.1
 Flask-Migrate==4.0.7
 Flask-SQLAlchemy==3.1.1
 gevent==24.2.1
