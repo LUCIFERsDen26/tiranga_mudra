@@ -1,11 +1,13 @@
 from flask import Flask
 from .extensions import db,migrate
 from .routes import db_route, index_route, reference_route
+from flask_cors import CORS
+
 import os
 import config
 def create_app():
     app = Flask(__name__)
-    
+    CORS(app, origins=['https://api.countrystatecity.in']) 
     environment_configuration = os.environ['CONFIGURATION_SETUP']
     app.config.from_object(environment_configuration)
     
