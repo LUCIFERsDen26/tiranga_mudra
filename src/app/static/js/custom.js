@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		const errorMessage = document.getElementById('erroMessage');
 
 		// Basic input validation
-		if (!emailInput.value || !firstName.value || !country.value || !state.value || !pinCode.value) {
+		if (!emailInput.value.toLowerCase() || !firstName.value || !country.value || !state.value || !pinCode.value) {
 			errorMessage.textContent = 'Please fill in all required fields';
 			return;
 		  }
@@ -122,15 +122,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			return;
 		  }
 		
-		console.log(validateEmail(emailInput.value))
-		if (!validateEmail(emailInput.value)){
+		
+		if (!validateEmail(emailInput.value.toLowerCase())){
 			errorMessage.textContent = 'Please valid email';
 			return;	
 		}
 
 		const data = {
-			email: emailInput.value,
-			name: firstName.value,
+			email: emailInput.value.toLowerCase(),
+			name: firstName.value.toLowerCase(),
 			country: country.value,
 			state: state.value,
 			pin_code: pinCode.value,
