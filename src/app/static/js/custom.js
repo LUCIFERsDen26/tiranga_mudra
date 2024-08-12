@@ -122,6 +122,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			return;
 		  }
 		
+		console.log(validateEmail(emailInput.value))
+		if (!validateEmail(emailInput.value)){
+			errorMessage.textContent = 'Please valid email';
+			return;	
+		}
+
 		const data = {
 			email: emailInput.value,
 			name: firstName.value,
@@ -131,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			reff_by: refCode.value,
 		  };
 
-		console.log(data)
+		
 		fetch('/submit', {
 			method: 'POST',
 			headers: {
@@ -142,16 +148,18 @@ document.addEventListener('DOMContentLoaded', function () {
 		  })
 		  .then(response => response.json())
 		  .then(responseData => {
-			console.log(responseData); 
+			 
 			if (responseData.err == "error"){
 				errorMessage.textContent = responseData.message
 			}
 			else{
+				
 				let showref = document.getElementById('refCodeshow')
 				showref.textContent =  "Your referral code :" + responseData.message;
 				// Handle successful submission (e.g., close popup, display success message)
 				submitedPopupOverlay.style.display='block';
 				closePopupFunc(); // Close the popup after form submission
+				getCount()
 			}
 			 
 		  })
@@ -212,3 +220,20 @@ const updateDuration =()=>{
 }
 updateDuration();
 
+function getCount() {
+	fetch('/count')
+	  .then(response => response.json())
+	  .then(data => {
+		const countValueElement = document.querySelector('.totalFlags');
+		countValueElement.textContent = data.count_value;
+	  })
+	  .catch(error => {
+		console.error('Error fetching count:', error);
+		// Handle error, e.g., display an error message
+	  });
+  	}
+
+	function validateEmail(email) {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		return emailRegex.test(email);
+	  }
