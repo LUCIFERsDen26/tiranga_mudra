@@ -552,13 +552,46 @@ font-family: Arial, sans-serif;
 }
 
 .popup input, select {
-  width: 80%;
-  padding: 10px;
-  margin: 10px 0;
+  width: 100%;
+  padding: 2px;
+  margin: 4px 0;
   border: 1px solid #ddd;
   border-radius: 4px;
   color: #000000;
 }
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .popup {
+    width: 90%;
+  } 
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .popup {
+    width: 80%;
+  } 
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .popup {
+    width: 60%;
+  } 
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .popup {
+    width: 60%;
+  } 
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .popup {
+  width: 60%;
+} }
 
 .popup button {
   background-color: #4caf50;

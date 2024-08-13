@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to close the popup
     function closePopupFunc() {
         popupOverlay.style.display = 'none';
+		mainbody.classList.remove("stopscroll");
     }
 	function submitedClosePopupFunc() {
 		submitedPopupOverlay.style.display = 'none';
@@ -164,7 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
 				showref.textContent =  "Your referral code :" + responseData.message;
 				// Handle successful submission (e.g., close popup, display success message)
 				submitedPopupOverlay.style.display='block';
+				
 				closePopupFunc(); // Close the popup after form submission
+				mainbody.classList.add("stopscroll");
 				getCount()
 			}
 			 
