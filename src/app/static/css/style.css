@@ -9,8 +9,11 @@ body {
   line-height: 28px;
   color: #6a6a6a;
   font-size: 14px;
-  background-color: #eff2f1; }
-
+  background-color: #ffffff; 
+}
+*{
+  box-sizing: border-box;
+}
 a {
   text-decoration: none;
   -webkit-transition: .3s all ease;
@@ -100,7 +103,14 @@ a {
       padding: calc(8rem - 30px) 0 8rem 0; } }
   .hero .intro-excerpt {
     position: relative;
-    z-index: 4; }
+    z-index: 4; 
+    display: grid;
+    justify-items: center;
+  text-align: center;}
+    .intro-excerpt img{
+      clip-path: circle(42%);
+      width: 40%;
+    }
     @media (min-width: 992px) {
       .hero .intro-excerpt {
         max-width: 450px; } }
@@ -123,30 +133,33 @@ a {
       z-index: 2;
       /* max-width: 32rem; */
       /* left: -20px; */
-      clip-path: inset(0% 0% 27% 0%); }
+      /* clip-path: inset(0% 0% 27% 0%); */
+    } 
       @media (min-width: 768px) {
         .hero .hero-img-wrap img {
           right: 0px;
-          left: 0px;
-          max-width: 22rem; 
-          clip-path: inset(0% 0% 27% 0%);} }
+          left: 0;
+          max-width: 100%; 
+          /* clip-path: inset(0% 0% 27% 0%); */
+        } }
       @media (min-width: 992px) {
         .hero .hero-img-wrap img {
           left: 0px;
-          top: -219px;
+          top: 0;
           position: absolute;
           right: -50px;
-          max-width: 32rem;
-          clip-path: inset(0% 0% 27% 0%); } }
+          max-width: 100%;
+          /* clip-path: inset(0% 0% 27% 0%); */
+         } }
       @media (min-width: 1200px) {
         .hero .hero-img-wrap img {
-          left: 0px;
-          top: -187px;
+          left: 0;
+          top: 0;
           right: -100px; 
-          max-width: 32rem;
-          clip-path: inset(0% 0% 27% 0%);
+          max-width: 100%;
+          /* clip-path: inset(0% 0% 27% 0%); */
         } }
-    .hero .hero-img-wrap:after {
+    /* .hero .hero-img-wrap:after {
       content: "";
       position: absolute;
       width: 255px;
@@ -155,7 +168,7 @@ a {
       background-size: contain;
       background-repeat: no-repeat;
       right: -100px;
-      top: -0px; }
+      top: -0px; } */
       @media (min-width: 1200px) {
         .hero .hero-img-wrap:after {
           top: -40px; } }
@@ -202,7 +215,7 @@ a {
 /* Product section css start 
 used in html tags = product-section-> container -> selection-title, btn, product-thumbnail  */
 .product-section {
-  padding: 7rem 0; 
+  padding: 2rem 0; 
   display: flex;
   justify-content: center;
 }
@@ -226,7 +239,7 @@ used in html tags = product-section-> container -> selection-title, btn, product
 
 
 .why-choose-section {
-  padding: 7rem 0; }
+  padding: 2rem 0; }
   .why-choose-section .img-wrap {
     position: relative; }
     .why-choose-section .img-wrap:before {
@@ -239,7 +252,7 @@ used in html tags = product-section-> container -> selection-title, btn, product
       background-size: contain;
       -webkit-transform: translate(-40%, -40%);
       -ms-transform: translate(-40%, -40%);
-      transform: translate(-40%, -40%);
+      transform: translate(-40%, -12%);
       z-index: -1; }
     .why-choose-section .img-wrap img {
       border-radius: 20px; }
@@ -269,10 +282,10 @@ used in html tags = product-section-> container -> selection-title, btn, product
 
 
 .before-footer-section {
-  padding: 7rem 0 12rem 0 !important; }
+  padding: 2rem 0 2rem 0 !important; }
 
 .blog-section {
-  padding: 7rem 0 12rem 0; }
+  padding: 2rem 0 2rem 0; }
   .blog-section .post-entry a {
     text-decoration: none; }
   .blog-section .post-entry .post-thumbnail {
@@ -299,7 +312,7 @@ used in html tags = product-section-> container -> selection-title, btn, product
     opacity: .7; }
 
 .footer-section {
-  padding: 80px 0;
+  padding: 2rem 0 2rem 0;
   background: #ffffff; }
   .footer-section .relative {
     position: relative; }
@@ -562,8 +575,9 @@ font-family: Arial, sans-serif;
 .countdown-container {
   display: flex;
   width: 100%;
-  max-width: 100%;
+  /* max-width: 100%; */
   justify-content: space-between;
+  
 }
 
 .days-container,
@@ -603,7 +617,22 @@ font-family: Arial, sans-serif;
 @media (max-width: 800px) {
   
   .countdown-container {
-    max-width: 90%;
+    max-width: 100%;
+  }
+  
+  .days-container,
+  .hours-container,
+  .minutes-container, 
+  .seconds-container {
+    font-size: 0.8em;
+    width: 100px;
+    height: 100px;
+  }
+}
+@media (max-width: 992px) {
+  
+  .countdown-container {
+    max-width: 100%;
   }
   
   .days-container,
