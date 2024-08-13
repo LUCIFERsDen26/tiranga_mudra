@@ -147,3 +147,4 @@ ENV/
 */*.db
 .vscode
 migrations
+*/.env
