@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		// Add your form submission logic here
 		const emailInput = document.getElementById('emailInput');
 		const firstName = document.getElementById('firstName');
+		const phoneno = document.getElementById('phoneNo');
 		const country = document.getElementById('country');
 		const state = document.getElementById('state');
 		const pinCode = document.getElementById('pinCode');
@@ -112,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		const errorMessage = document.getElementById('erroMessage');
 
 		// Basic input validation
-		if (!emailInput.value.toLowerCase() || !firstName.value || !country.value || !state.value || !pinCode.value) {
+		if (!emailInput.value.toLowerCase() || !firstName.value || !country.value || !state.value || !pinCode.value || !phoneno.value) {
 			errorMessage.textContent = 'Please fill in all required fields';
 			return;
 		  }
@@ -127,10 +128,15 @@ document.addEventListener('DOMContentLoaded', function () {
 			errorMessage.textContent = 'Please valid email';
 			return;	
 		}
+		if (!validatePhoneNumber(phoneno.value)){
+			errorMessage.textContent = 'Please valid phone number';
+			return;	
+		}
 
 		const data = {
 			email: emailInput.value.toLowerCase(),
 			name: firstName.value.toLowerCase(),
+			phone_no: phoneno.value,
 			country: country.value,
 			state: state.value,
 			pin_code: pinCode.value,
@@ -237,3 +243,10 @@ function getCount() {
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		return emailRegex.test(email);
 	  }
+	
+	function validatePhoneNumber(phoneNumber) {
+		// Basic phone number validation (adjust regex as needed)
+		const phoneRegex = /^\d{10}$/; // Matches 10 digits
+		return phoneRegex.test(phoneNumber);
+	  }
+	  

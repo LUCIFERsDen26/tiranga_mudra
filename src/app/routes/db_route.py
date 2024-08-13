@@ -8,7 +8,7 @@ def add_userInfo():
     
     if request.method == "POST":
         userInfo = request.get_json()
-
+        print(userInfo)
         success, message_or_reff_id = add_user_to_db(userInfo)
         
         if success:

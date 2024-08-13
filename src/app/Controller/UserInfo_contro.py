@@ -47,12 +47,14 @@ def add_user_to_db(userInfo):
         new_user = UserInfo(
             reff_id=reff_id,
             email=userInfo['email'],
+            phone_no = userInfo['phone_no'],
             name=userInfo['name'],
             country=userInfo['country'],
             sate=userInfo['state'],
             pin_code=userInfo['pin_code'],
             reff_by=userInfo.get('reffred_by') if userInfo.get('reffred_by') else None
         )
+        
         db.session.add(new_user)
         db.session.commit()
         return True, reff_id
