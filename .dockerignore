@@ -148,3 +148,4 @@ ENV/
 .vscode
 migrations
 */.env
+certbot
