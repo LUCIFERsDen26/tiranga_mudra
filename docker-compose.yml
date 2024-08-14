@@ -49,8 +49,7 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     depends_on:
-      - user_info_db
-      - tiranga_mudra
+      - tiranga_mudra      
     ports:
       - "80:80"
     networks:
@@ -63,3 +62,7 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot       
     command: certonly --webroot -w /var/www/certbot --force-renewal --email acceptstudio01@gmail.com -d 2047tirangamudra.in --agree-tos
+    depends_on:
+      - nginx_webserver
+    networks:
+      - app_network 
