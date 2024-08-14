@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parisienne&display=swap');
 body {
   overflow-x: hidden;
   position: relative; }
 
 body {
+  /* font-family: 'Montserrat', sans-serif; */
   font-family: "Inter", sans-serif;
   font-weight: 400;
   line-height: 28px;
@@ -125,40 +127,122 @@ a {
     color: rgba(255, 255, 255, 0.5);
     margin-bottom: 30px; }
   .hero .hero-img-wrap {
-    position: relative; }
+    position: relative; 
+  }
     .hero .hero-img-wrap img {
       position: relative;
       top: 0px;
+      left: 22%;
       right: 0px;
       z-index: 2;
+      width: 60%;
       /* max-width: 32rem; */
       /* left: -20px; */
       /* clip-path: inset(0% 0% 27% 0%); */
     } 
+    .hero .hero-img-wrap img.chakra {
+      width: 19% !important;
+      position: absolute;
+      /* top:34px; */
+      bottom: 0px;
+      /* left: 54%; */
+      transform: translateX(-50%);
+      animation: spin 20s linear infinite;
+  }
+    /* .chakra{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url("../images/chakra.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 130px;
+      width: 130px;
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: spin 20s linear infinite;
+  } */
+  
+  @keyframes spin {
+      from {
+          transform: translateX(-50%) rotate(0deg);
+      }
+      to {
+          transform: translateX(-50%) rotate(360deg);
+      }
+  }
+  
+  @media only screen and (max-width: 400px) {
+    .hero .hero-img-wrap img.chakra{
+      left: 50%;
+      top: 58px;
+    }
+  }
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 400px) {
+    .hero .hero-img-wrap img.chakra{
+      left: 50%;
+      top: 75px;
+    } 
+  }
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    .hero .hero-img-wrap img.chakra{
+      left: 50%;
+      top: 86px;
+    } 
+  }
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    .hero .hero-img-wrap img.chakra{
+      top:115px;
+      left:50%;
+    }
+  }
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    .hero .hero-img-wrap img.chakra{
+      top: 90px;
+      left: 53%;
+    } 
+  }
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+    .hero .hero-img-wrap img.chakra{
+      top: 52px;
+      left: 54%;
+    }
+  }
       @media (min-width: 768px) {
         .hero .hero-img-wrap img {
           right: 0px;
-          left: 0;
-          max-width: 100%; 
+          left: 22%;
+          /* max-width: 100%;  */
           /* clip-path: inset(0% 0% 27% 0%); */
         } }
       @media (min-width: 992px) {
         .hero .hero-img-wrap img {
-          left: 0px;
+          left: 25%;
           top: 0;
           position: absolute;
           right: -50px;
-          max-width: 100%;
+          /* max-width: 100%; */
           /* clip-path: inset(0% 0% 27% 0%); */
          } }
       @media (min-width: 1200px) {
         .hero .hero-img-wrap img {
-          left: 0;
-          top: 0;
+          left: 25%;
+          top: -70px;
           right: -100px; 
-          max-width: 100%;
+          /* max-width: 100%; */
           /* clip-path: inset(0% 0% 27% 0%); */
         } }
+        @media (min-width: 1200px) {
+          .hero .hero-img-wrap:after {
+            top: -40px; } }
     /* .hero .hero-img-wrap:after {
       content: "";
       position: absolute;
@@ -169,9 +253,6 @@ a {
       background-repeat: no-repeat;
       right: -100px;
       top: -0px; } */
-      @media (min-width: 1200px) {
-        .hero .hero-img-wrap:after {
-          top: -40px; } }
 
 .btn {
   font-weight: 600;
@@ -235,9 +316,59 @@ used in html tags = product-section-> container -> selection-title, btn, product
     flex-wrap: wrap;
     justify-content: center;
   }
+  .product-section .div2 img{
+    height: 290px;
+    width: 260px;
+  }
 
 
+/*youtube start*/
+.why-choose-section .container{
+  display: flex;
+  justify-content: center;
+}
+.youtube{
+  position: static;
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 600px) {
+  .youtube {
+    width: 90%;
+  } 
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .youtube {
+    width: 90%;
+  } 
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .youtube {
+    width: 90%;
+  } 
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .youtube {
+    width: 100%;
+  } 
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .youtube {
+  width: 100%;
+} }
 
+iframe{
+  border:5px solid rgba(59, 93, 80, 50%);
+    -webkit-border-radius: 20px !important; 
+    -ms-border-radius: 20px !important; 
+    -o-border-radius: 20px !important; 
+    border-radius: 20px !important;   
+}
+/*youtube end*/
 .why-choose-section {
   padding: 2rem 0; }
   .why-choose-section .img-wrap {
@@ -525,6 +656,10 @@ font-family: Arial, sans-serif;
     flex-direction: column;
     align-items: center;
 }
+.popup-content-submit p{
+  margin: 0;
+  color: black;
+}
 .popup-content-submit img{
   width: 4rem;
 }
@@ -592,6 +727,10 @@ font-family: Arial, sans-serif;
   .popup {
   width: 60%;
 } }
+@media only screen and (min-width: 1200px) {
+  .popup2 {
+  width: 35%;
+} }
 
 .popup button {
   background-color: #4caf50;
@@ -601,6 +740,13 @@ font-family: Arial, sans-serif;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+}
+#whatsapp-share {
+  background: rgba(51, 170, 51, 0);
+  padding: 2px 2px; 
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 /* Popup section end */
 
@@ -682,9 +828,11 @@ font-family: Arial, sans-serif;
 .totalFlags{
   font-weight: 600;
   padding: 12px 30px;
-  border-radius: 30px;
+  border-radius: 6px;
   color: #ffffff;
-  background: #2f2f2f;
+  box-shadow:#4caf50;
+  background-color: #000000;
+  box-shadow: 0px 0px 10px rgb(255, 149, 0);
   border-color: #2f2f2f;
   width: fit-content;
   margin-top: 5px;

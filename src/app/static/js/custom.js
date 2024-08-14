@@ -162,7 +162,8 @@ document.addEventListener('DOMContentLoaded', function () {
 			else{
 				
 				let showref = document.getElementById('refCodeshow')
-				showref.textContent =  "Your referral code :" + responseData.message;
+				showref.textContent =  "Your referral code: " + responseData.message;
+				ref_link = ref_link+responseData.message
 				// Handle successful submission (e.g., close popup, display success message)
 				submitedPopupOverlay.style.display='block';
 				
@@ -196,38 +197,40 @@ document.addEventListener('DOMContentLoaded', function () {
 // popup end 
 
 // Countdown function start
-const countDate = new Date('August 15, 2024 00:00:00').getTime();
+// const countDate = new Date('August 15, 2024 00:00:00').getTime();
 
-const interval = setInterval(() =>{
-	const now = new Date().getTime();
-	const gap = countDate -  now;
-	if(gap<0){
-		clearInterval(interval);
-		updateDuration(0);
-		return;
-	}
-	updateDuration(gap);
-}, 1000);
+// const interval = setInterval(() =>{
+// 	const now = new Date().getTime();
+// 	const gap = countDate -  now;
+// 	if(gap<0){
+// 		clearInterval(interval);
+// 		updateDuration(0);
+// 		return;
+// 	}
+// 	updateDuration(gap);
+// }, 1000);
 
-const updateDuration =()=>{
-	const now = new Date().getTime();
-	const gap = countDate - now;
-	const sec = 1000;
-	const min = sec * 60;
-	const hour = min * 60;
-	const day = hour * 24;
+// const updateDuration =()=>{
+// 	const now = new Date().getTime();
+// 	const gap = countDate - now;
+// 	const sec = 1000;
+// 	const min = sec * 60;
+// 	const hour = min * 60;
+// 	const day = hour * 24;
 	
-	let textDays = Math.floor(gap/day);
-	let textHours = Math.floor((gap%day)/hour);
-	let textMins = Math.floor((gap%hour)/min);
-	let textSecs = Math.floor((gap%min)/sec);
-	document.querySelector('.days').innerHTML = textDays;
-	document.querySelector('.hours').innerHTML = textHours;
-	document.querySelector('.minutes').innerHTML = textMins;
-	document.querySelector('.seconds').innerHTML = textSecs;
+// 	let textDays = Math.floor(gap/day);
+// 	let textHours = Math.floor((gap%day)/hour);
+// 	let textMins = Math.floor((gap%hour)/min);
+// 	let textSecs = Math.floor((gap%min)/sec);
+// 	document.querySelector('.days').innerHTML = textDays;
+// 	document.querySelector('.hours').innerHTML = textHours;
+// 	document.querySelector('.minutes').innerHTML = textMins;
+// 	document.querySelector('.seconds').innerHTML = textSecs;
 	
-}
-updateDuration();
+//}
+//updateDuration();
+
+var ref_link = "https://www.2047tirangamudra.in/reference/"
 
 function getCount() {
 	fetch('/count')
@@ -252,4 +255,52 @@ function getCount() {
 		const phoneRegex = /^\d{10}$/; // Matches 10 digits
 		return phoneRegex.test(phoneNumber);
 	  }
+//video auto play start
+
+var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // Function to initialize the YouTube IFrame API
+    function onYouTubeIframeAPIReady() {
+        const player = new YT.Player('youtube-video', {
+            events: {
+                'onReady': onPlayerReady
+            }
+        });
+    }
+
+    // Function that runs when the player is ready
+    function onPlayerReady(event) {
+        const iframe = document.getElementById('youtube-video');
+        
+        iframe.addEventListener('mouseenter', function() {
+            event.target.setVolume(60); // Set volume to 60%
+			event.target.setLoop(true);
+            event.target.playVideo();    // Play the video
+        });
+
+        // iframe.addEventListener('mouseleave', function() {
+        //     event.target.pauseVideo();   // Pause the video when the mouse leaves
+        // });
+    };
+
+	//youtube video end
+
+	//whatsapp share button
+	document.getElementById('whatsapp-share').addEventListener('click', function() {
+        
+		var textToShare = document.getElementById('text-to-share').innerText;
+        
+        // Handle special characters and encode the text
+        textToShare = encodeURIComponent(textToShare);
+
+        // Create the WhatsApp share link
+        var whatsappLink = 'https://wa.me/?text=' + textToShare +'%0A'+ ref_link;
+		console.log(whatsappLink)
+        // Redirect to the WhatsApp link
+        window.location.href = whatsappLink;
+		
+    });
 	  
