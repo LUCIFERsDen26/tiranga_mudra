@@ -63,6 +63,6 @@ services:
       - ./certbot/www:/var/www/certbot       
     command: certonly --webroot -w /var/www/certbot --force-renewal --email acceptstudio01@gmail.com -d 2047tirangamudra.in --agree-tos
     depends_on:
-      - nginx_webserver
+      - nginx
     networks:
       - app_network 
