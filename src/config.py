@@ -23,7 +23,7 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     ENV = "production"
     DEBUG = False
-    DATABASE_URI = MONGO_URI = "mongodb://root:tiranga_mudra-ADMIN@user_info_db:32000/user_info?authSource=admin"
+    DATABASE_URI = MONGO_URI = "mongodb://root:tiranga_mudra-ADMIN@user_info_db:27017/user_info?authSource=admin"
     MONGO_DB_NAME = "user_info"
     #SQLALCHEMY_ECHO = False
 
