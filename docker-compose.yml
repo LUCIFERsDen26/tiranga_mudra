@@ -33,10 +33,12 @@ services:
     volumes:
       - user_info_db_vol:/data/db  # MongoDB data directory
     healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.runCommand({ ping: 1 })"]
+      test: echo 'db.runCommand("ping").ok' | mongosh --authenticationDatabase admin --host localhost -u root -p  tiranga_mudra-ADMIN admin --quiet | grep -q 1
       interval: 10s
-      timeout: 5s
-      retries: 30
+      timeout: 60s
+      retries: 3
+      start_period: 20s
+  
 
   nginx:
     container_name: nginx_webserver
