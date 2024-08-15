@@ -71,7 +71,7 @@
 
 
 })()
-
+var firsttime = true;
 // popup start 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -84,12 +84,44 @@ document.addEventListener('DOMContentLoaded', function () {
 	const button = document.querySelector(".popup-btn");
 	const formSubmit = document.querySelector("#form-submit");
 	const mainbody = document.querySelector("body");
-    // Function to open the popup
+    
+	// Function to open the popup
 	button.addEventListener('click',openPopup);
-    function openPopup() {
-        popupOverlay.style.display = 'block';
-		mainbody.classList.add("stopscroll");
-    }
+    function openPopup(){
+		
+		const cookieValue = getCookie('DataCookie');		
+	
+		if (cookieValue) {
+			try {
+				// Parse the cookie value into a JSON object
+				const cookieData = JSON.parse(cookieValue);
+				
+				// Use the cookieData as needed
+				console.log('Cookie data:', cookieData);
+				
+				// Call the function to create and display the referral link
+				if(firsttime){
+					displayReferralLink(cookieData);
+					firsttime=false;
+				}
+				else{
+					return;
+				}
+				
+			} catch (e) {
+				// Handle the case where the cookie value is not valid JSON
+				console.error('Error parsing cookie data:', e);
+				
+				// Continue with opening the popup (or handle the error as needed)
+				popupOverlay.style.display = 'block';
+				mainbody.classList.add("stopscroll");
+			}
+		} else {
+			// Cookie not found, proceed as normal
+			popupOverlay.style.display = 'block';
+			mainbody.classList.add("stopscroll");
+		}
+	}
     // Function to close the popup
     function closePopupFunc() {
         popupOverlay.style.display = 'none';
@@ -164,12 +196,22 @@ document.addEventListener('DOMContentLoaded', function () {
 				let showref = document.getElementById('refCodeshow')
 				showref.textContent =  "Your referral code: " + responseData.message;
 				ref_link = ref_link+responseData.message
+
+				// build data:
+				const Data = {
+					refCode: responseData.message,
+					link: ref_link,
+					name: firstName.value.toLowerCase()					
+				};
+				
 				// Handle successful submission (e.g., close popup, display success message)
 				submitedPopupOverlay.style.display='block';
 				
 				closePopupFunc(); // Close the popup after form submission
 				mainbody.classList.add("stopscroll");
 				getCount()
+
+				setCookie('DataCookie', Data, 7);
 			}
 			 
 		  })
@@ -230,14 +272,14 @@ document.addEventListener('DOMContentLoaded', function () {
 //}
 //updateDuration();
 
-var ref_link = "https://www.2047tirangamudra.in/reference/"
+var ref_link = "2047tirangamudra.in/reference/"
 
 function getCount() {
 	fetch('/count')
 	  .then(response => response.json())
 	  .then(data => {
 		const countValueElement = document.querySelector('.totalFlags');
-		countValueElement.textContent = data.count_value;
+		countValueElement.textContent = "Total flag donated- "+ data.count_value;
 	  })
 	  .catch(error => {
 		console.error('Error fetching count:', error);
@@ -303,4 +345,74 @@ var tag = document.createElement('script');
         window.location.href = whatsappLink;
 		
     });
-	  
+
+	function setCookie(name, jsonData, days, sameSite = 'Strict') {
+		// Convert JSON object to a string
+		const jsonString = JSON.stringify(jsonData);
+	
+		// Create a cookie with the given name, value, and expiration date
+		let expires = "";
+		if (days) {
+			const date = new Date();
+			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Convert days to milliseconds
+			expires = "; expires=" + date.toUTCString();
+		}
+	
+		// Detect if the site is using HTTPS
+		const isSecure = window.location.protocol === 'https:';
+	
+		// Construct cookie string with security attributes
+		let cookieString = `${name}=${encodeURIComponent(jsonString)}${expires}; path=/`;
+		
+		if (isSecure) {
+			cookieString += "; Secure";
+		}
+		
+		cookieString += `; SameSite=${sameSite}`;
+		
+		document.cookie = cookieString;
+	}
+
+	function getCookie(name) {
+		const nameEQ = name + "=";
+		const ca = document.cookie.split(';');
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) === 0) {
+				return decodeURIComponent(c.substring(nameEQ.length, c.length));
+			}
+		}
+		return null;
+	}
+	
+
+	// Function to create and display the referral link
+function displayReferralLink(Data) {
+    // Get the target div by its ID
+    const reflink = document.getElementById('createreflink');
+	const yourname = document.getElementById('createyournameref');
+
+	// Create a new <h5> element
+    const h5Element = document.createElement('h6');
+	// Set the text content of the link
+    h5Element.textContent = "Hello "+ Data.name +", your referrals:";
+	// Append the link element to the container
+    yourname.appendChild(h5Element);
+
+
+    // Create a new <a> element
+    const linkElement = document.createElement('a');
+    // Set the href attribute to the provided URL
+    linkElement.href = Data.link;
+    // Set the text content of the link
+    linkElement.textContent = Data.link;
+    // Optionally, set the target attribute to open the link in a new tab
+    linkElement.target = '_blank';
+
+    // Append the link element to the container
+    reflink.appendChild(linkElement);
+
+    // Display the 'allreadysubmited' div by changing its display style
+    document.getElementById('allreadysubmited').style.display = 'block';
+}

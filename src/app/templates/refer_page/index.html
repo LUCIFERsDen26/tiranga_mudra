@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no" />
-	<link rel="shortcut icon" href="./images/Titanga-Mudra-PNG.png" />
+	<link rel="shortcut icon" href="/static/images/Titanga-Mudra-PNG.png" />
 
   <meta name="description" content="" />
   <meta name="keywords" content="bootstrap, bootstrap4" />
@@ -147,64 +147,76 @@
 			<div class="container">
 				<div class="row">
 					<!-- Start Column 1 -->
-					<div class="col-md-12 col-lg-3 mb-lg-0 div1">
-						<h2 class="mb-4 section-title">Donate a Flag</h2>
-						<p class="popup-btn btn">Click Here</p>
-					<div class="totalFlags">Total flag donated- {{ count_value }}<span id="flas"></span></div>
-					</div> 
+						<div class="col-md-12 col-lg-3 mb-lg-0 div1">
+							<h2 class="mb-4 section-title">Donate a Flag</h2>
+							<p class="popup-btn btn">Click Here</p>
+						<div class="totalFlags">Total flag donated- {{ count_value }}<span id="flas"></span></div>
 
-					<!-- Popup start -->
-						<!-- popup form start -->
-						<div class="popup-overlay" id="popupOverlay">
-							<div class="popup" id="popup">
-								<span class="close" id="closePopup">&times;</span>
-									<div class="popup-content">
-										
-									<p>Flag Donation Form</p>					
-									<input type="text" placeholder="First Name" id="firstName">
-									<input type="tel" placeholder="Phone No" id="phoneNo">
-									<input type="email" placeholder="Your email" id="emailInput">
-									<select name="country" id="country" onchange="loadStates()">
-										<option selected>Select Country</option>
-									</select>
-									<select name="state" id="state">
-										<option selected>Select State</option>
-									</select>
-									<!-- <select name="city" id="city">
-										<option selected>Select City</option>
-									</select> -->
-									<input type="text" placeholder="Pin Code" id="pinCode">
-									<input type="text" placeholder="Referral Code" id="refCode" value="{{ ref_id }}" readonly>
-									<button id="form-submit">Submit</button>
-									<div>
-										<p id="erroMessage"  style="color: red;">
-											
-										</p>
-									</div>
-								</div>					
-							</div>					
-						</div>
-						<!-- popup form end  -->
+						<div id="allreadysubmited" style="display: none;">
+							<div>
+								<div style="text-align: center;" id="createyournameref">
+									
+								</div>
+								<div style="text-align: center;" id="createreflink">
 
-						<!-- submit popup start  -->
-							<div class="popup-overlay" id="popupOverlay2">
-					<div class="popup popup2" id="popup2">
-									<span class="close" id="closePopup2">&times;</span>
-										<div class="popup-content-submit">
-							<img src="/static/images/greentick.png" alt="tick" />
-							<div id="text-to-share">
-								<p>|| तिरंगा दान करने के लिए धन्यवाद ||</p>
-									<p>भारत को विकसित राष्ट्र बनाने के लिए एवं 'तिरंगा मुद्रा' का लाभ उठाने के लिए कृपया इस लिंक को अपने समस्त परिजनों मित्रों के साथ अधिक से अधिक शेयर करें।</p>
-									<p><b><span id="refCodeshow"></span></b></p>
-							</div>		
-							<button id="whatsapp-share">
-								<img src="/static/images/icons8-whatsapp-48.png" alt="whatsapp" />
-							</button>
-									</div>					
-								</div>					
+								</a>
 							</div>
-						<!-- submit popup end  -->
-					<!-- popup end -->
+							</div>
+						</div>
+						</div> 
+
+						<!-- Popup start -->
+							<!-- popup form start -->
+								<div class="popup-overlay" id="popupOverlay">
+									<div class="popup" id="popup">
+										<span class="close" id="closePopup">&times;</span>
+											<div class="popup-content">
+												
+											<p>Flag Donation Form</p>					
+											<input type="text" placeholder="First Name" id="firstName">
+											<input type="tel" placeholder="Phone No" id="phoneNo">
+											<input type="email" placeholder="Your email" id="emailInput">
+											<select name="country" id="country" onchange="loadStates()">
+												<option selected>Select Country</option>
+											</select>
+											<select name="state" id="state">
+												<option selected>Select State</option>
+											</select>
+											<!-- <select name="city" id="city">
+												<option selected>Select City</option>
+											</select> -->
+											<input type="text" placeholder="Pin Code" id="pinCode">
+											<input type="text" placeholder="Referral Code" id="refCode" value="{{ ref_id }}" readonly>
+											<button id="form-submit">Submit</button>
+											<div>
+												<p id="erroMessage"  style="color: red;">
+													
+												</p>
+											</div>
+										</div>					
+									</div>					
+								</div>
+							<!-- popup form end  -->
+
+							<!-- submit popup start  -->
+								<div class="popup-overlay" id="popupOverlay2">
+						<div class="popup popup2" id="popup2">
+										<span class="close" id="closePopup2">&times;</span>
+											<div class="popup-content-submit">
+								<img src="/static/images/greentick.png" alt="tick" />
+								<div id="text-to-share">
+									<p>|| तिरंगा दान करने के लिए धन्यवाद ||</p>
+										<p>भारत को विकसित राष्ट्र बनाने के लिए एवं 'तिरंगा मुद्रा' का लाभ उठाने के लिए कृपया इस लिंक को अपने समस्त परिजनों मित्रों के साथ अधिक से अधिक शेयर करें।</p>
+										<p><b><span id="refCodeshow"></span></b></p>
+								</div>		
+								<button id="whatsapp-share">
+									<img src="/static/images/icons8-whatsapp-48.png" alt="whatsapp" />
+								</button>
+										</div>					
+									</div>					
+								</div>
+							<!-- submit popup end  -->
+						<!-- popup end -->
 
 					<!-- End Column 1 -->
 
