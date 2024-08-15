@@ -30,9 +30,13 @@ def add_user_to_db(userInfo):
     """Adds a new user to the database, handling validations and error handling."""
     
     # Check for existing user with the same mobile number (contact)
-    existing_user = UserInfo.query.filter_by(email=userInfo['email']).first()
+    existing_user = UserInfo.query.filter_by(phone_no=userInfo['phone_no']).first()
     if existing_user:
-        return False, "Error: User with this email already exists." 
+        return False, "Error: User with this phone number already exists." 
+
+    #existing_user = UserInfo.query.filter_by(email=userInfo['email']).first()
+    #if existing_user:
+    #    return False, "Error: User with this email already exists." 
 
     # Generate a unique reff_id
     reff_id = generate_short_uuid()
@@ -46,12 +50,12 @@ def add_user_to_db(userInfo):
     try:
         new_user = UserInfo(
             reff_id=reff_id,
-            email=userInfo['email'],
+            #email=userInfo['email'],
             phone_no = userInfo['phone_no'],
             name=userInfo['name'],
             country=userInfo['country'],
-            sate=userInfo['state'],
-            pin_code=userInfo['pin_code'],
+            #sate=userInfo['state'],
+            #pin_code=userInfo['pin_code'],
             reff_by=userInfo.get('reffred_by') if userInfo.get('reffred_by') else None
         )
         

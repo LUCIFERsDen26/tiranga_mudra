@@ -104,43 +104,43 @@ document.addEventListener('DOMContentLoaded', function () {
     function submitForm() {
         
 		// Add your form submission logic here
-		const emailInput = document.getElementById('emailInput');
+		//const emailInput = document.getElementById('emailInput');
 		const firstName = document.getElementById('firstName');
 		const phoneno = document.getElementById('phoneNo');
 		const country = document.getElementById('country');
-		const state = document.getElementById('state');
-		const pinCode = document.getElementById('pinCode');
+		//const state = document.getElementById('state');
+		//const pinCode = document.getElementById('pinCode');
 		const refCode = document.getElementById('refCode');
 		const errorMessage = document.getElementById('erroMessage');
 
 		// Basic input validation
-		if (!emailInput.value.toLowerCase() || !firstName.value || !country.value || !state.value || !pinCode.value || !phoneno.value) {
+		if (!firstName.value || !country.value || !phoneno.value) {//|| !state.value || !pinCode.value || !emailInput.value.toLowerCase()) {
 			errorMessage.textContent = 'Please fill in all required fields';
 			return;
 		  }
 		
-		if (country.value === 'Select Country' || state.value === 'Select State') {
-			errorMessage.textContent = 'Please select a valid country and state';
+		if (country.value === 'Select Country') { //|| state.value === 'Select State') {
+			errorMessage.textContent = 'Please select a valid country';
 			return;
 		  }
 		
 		
-		if (!validateEmail(emailInput.value.toLowerCase())){
-			errorMessage.textContent = 'Please valid email';
-			return;	
-		}
+		//if (!validateEmail(emailInput.value.toLowerCase())){
+		//	errorMessage.textContent = 'Please valid email';
+		//	return;	
+		//}
 		if (!validatePhoneNumber(phoneno.value)){
 			errorMessage.textContent = 'Please valid phone number';
 			return;	
 		}
 
 		const data = {
-			email: emailInput.value.toLowerCase(),
+			//email: emailInput.value.toLowerCase(),
 			name: firstName.value.toLowerCase(),
 			phone_no: phoneno.value,
 			country: country.value,
-			state: state.value,
-			pin_code: pinCode.value,
+			//state: state.value,
+			//pin_code: pinCode.value,
 			reff_by: refCode.value,
 		  };
 
@@ -257,7 +257,7 @@ function getCount() {
 	  }
 //video auto play start
 
-var tag = document.createElement('script');
+	var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
