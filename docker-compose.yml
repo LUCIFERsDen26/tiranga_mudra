@@ -60,7 +60,7 @@ services:
     volumes: 
       - ./certbot/conf:/etc/letsencrypt:rw
       - ./certbot/www:/var/www/certbot:rw       
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email acceptstudio01@gmail.com -d www.2047tirangamudra.in --agree-tos
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email acceptstudio01@gmail.com -d 2047tirangamudra.in -d www.2047tirangamudra.in --agree-tos
     depends_on:
       - nginx
     networks:
