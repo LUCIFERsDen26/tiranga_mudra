@@ -10,19 +10,20 @@ if os.path.exists(dotenv_path):
   
 class Config:
     SECRET_KEY = "mrfrIMEngCl0pAKqWIIBS_g"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    #SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DevelopmentConfig(Config):
     ENV = "development"
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
-    SQLALCHEMY_ECHO = True
+    DATABASE_URI = os.path.join(basedir, 'app.json')
+    
 
 
 class ProductionConfig(Config):
     ENV = "production"
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://website:website@user_info_db:3306/user_info'
-    SQLALCHEMY_ECHO = False
+    DATABASE_URI = MONGO_URI = "mongodb://root:tiranga_mudra-ADMIN@user_info_db:32000/user_info?authSource=admin"
+    MONGO_DB_NAME = "user_info"
+    #SQLALCHEMY_ECHO = False
 

@@ -1,5 +1,5 @@
 from flask import Blueprint
-from ..Controller.UserInfo_contro import add_user_to_db,get_user_info_count
+from ..Controller.UserInfo_contro import add_user_to_db, get_user_info_count
 bp = Blueprint("db", __name__)
 from flask import url_for, flash, request, render_template
 
@@ -8,7 +8,6 @@ def add_userInfo():
     
     if request.method == "POST":
         userInfo = request.get_json()
-        print(userInfo)
         success, message_or_reff_id = add_user_to_db(userInfo)
         
         if success:

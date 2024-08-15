@@ -144,7 +144,7 @@ ENV/
 # mypy
 .mypy_cache/
 
-*/*.db
+*/*.json
 .vscode
 migrations
 */.env

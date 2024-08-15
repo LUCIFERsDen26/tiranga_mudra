@@ -8,7 +8,7 @@ __pycache__/
 
 #db
 migrations/*
-*.db
+*.json
 
 # Distribution / packaging
 .Python

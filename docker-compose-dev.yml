@@ -23,20 +23,19 @@ services:
 
   user_info_db:
     container_name: user_info_db
-    image: mysql:8
+    image: mongo:latest
     ports:
-      - "32000:3306"
+      - "32000:27017"  # Map MongoDB port (27017) to host port (32000)
     environment:
-      MYSQL_ROOT_PASSWORD: tiranga_mudra-ADMIN
-      MYSQL_DATABASE: user_info
-      MYSQL_USER: website
-      MYSQL_PASSWORD: website
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: tiranga_mudra-ADMIN
+      MONGO_INITDB_DATABASE: user_info
     networks:
       - app_network
     volumes:
-      - user_info_db_vol:/var/lib/mysql
+      - user_info_db_vol:/data/db  # MongoDB data directory
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-p3306"]
+      test: ["CMD", "mongo", "--eval", "db.runCommand({ ping: 1 })"]
       interval: 10s
       timeout: 5s
       retries: 30

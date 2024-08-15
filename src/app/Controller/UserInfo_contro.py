@@ -1,67 +1,94 @@
-from ..Models.UserInfo_Model import UserInfo
-from  ..extensions import db
-#from flask import url_for, flash, request, render_template
+from tinydb import TinyDB, Query
+from tinydb.table import Table
+from pymongo.collection import Collection
+import shortuuid
 
-
-def get_user_info_count():
-    """Retrieves the count of the last ID in the UserInfo table."""
-    user_info = UserInfo.query.order_by(UserInfo.id.desc()).first()
-    if user_info:
-        return user_info.id
-    else:
-        return 0  # Or any default value you prefer
-
-
+from ..extensions import get_db
 
 def generate_short_uuid(length=5):
-    import shortuuid
     """Generates a random short UUID of specified length.
 
     Args:
-        length: The desired length of the UUID. Defaults to 22.
+        length: The desired length of the UUID. Defaults to 5.
 
     Returns:
         A string representing the generated short UUID.
     """
-
     return shortuuid.ShortUUID().random(length=length)
+
+def get_user_info_count():
+    """Retrieves the count of documents or items in the UserInfo database."""
+    db = get_db()
+    
+    if isinstance(db, Table):
+        # TinyDB: Count the number of items in the table
+        User = Query()
+        return len(db.all())
+    elif isinstance(db, Collection):
+        # PyMongo: Count the number of documents in the collection
+        return db.count_documents({})
+    else:
+        raise TypeError("Unsupported database type")
 
 def add_user_to_db(userInfo):
     """Adds a new user to the database, handling validations and error handling."""
+    db = get_db()
     
-    # Check for existing user with the same mobile number (contact)
-    existing_user = UserInfo.query.filter_by(phone_no=userInfo['phone_no']).first()
-    if existing_user:
-        return False, "Error: User with this phone number already exists." 
+    if isinstance(db, Table):
+        User = Query()
 
-    #existing_user = UserInfo.query.filter_by(email=userInfo['email']).first()
-    #if existing_user:
-    #    return False, "Error: User with this email already exists." 
+        # Check for existing user with the same phone number
+        existing_user = db.search(User.phone_no == userInfo['phone_no'])
+        if existing_user:
+            return False, "Error: User with this phone number already exists."
 
-    # Generate a unique reff_id
-    reff_id = generate_short_uuid()
+        # Check for referred_by
+        if userInfo.get('reffred_by'):
+            referrer_exists = db.search(User.reff_id == userInfo.get('reffred_by'))
+            if not referrer_exists:
+                return False, "Error: Referred Code, not found."
 
-    # Check if reffred_by exists in the reff_id column (if provided)
-    if userInfo.get('reffred_by'):
-        referrer_exists = UserInfo.query.filter_by(reff_id=userInfo.get('reffred_by')).first()
-        if not referrer_exists:
-            return False, "Error: Referred Code, not found."
+        # Generate a unique reff_id
+        reff_id = generate_short_uuid()
 
-    try:
-        new_user = UserInfo(
-            reff_id=reff_id,
-            #email=userInfo['email'],
-            phone_no = userInfo['phone_no'],
-            name=userInfo['name'],
-            country=userInfo['country'],
-            #sate=userInfo['state'],
-            #pin_code=userInfo['pin_code'],
-            reff_by=userInfo.get('reffred_by') if userInfo.get('reffred_by') else None
-        )
-        
-        db.session.add(new_user)
-        db.session.commit()
-        return True, reff_id
-    except Exception as e:
-        db.session.rollback()
-        return False, "Error: " + str(e)
+        try:
+            new_user = {
+                'reff_id': reff_id,
+                'phone_no': userInfo['phone_no'],
+                'name': userInfo['name'],
+                'country': userInfo['country'],
+                'reff_by': userInfo.get('reffred_by') if userInfo.get('reffred_by') else None
+            }
+            db.insert(new_user)
+            return True, reff_id
+        except Exception as e:
+            return False, "Error: " + str(e)
+
+    elif isinstance(db, Collection):
+        # Check for existing user with the same phone number
+        if db.find_one({'phone_no': userInfo['phone_no']}):
+            return False, "Error: User with this phone number already exists."
+
+        # Check for referred_by
+        if userInfo.get('reffred_by'):
+            if not db.find_one({'reff_id': userInfo.get('reffred_by')}):
+                return False, "Error: Referred Code, not found."
+
+        # Generate a unique reff_id
+        reff_id = generate_short_uuid()
+
+        try:
+            new_user = {
+                'reff_id': reff_id,
+                'phone_no': userInfo['phone_no'],
+                'name': userInfo['name'],
+                'country': userInfo['country'],
+                'reff_by': userInfo.get('reffred_by') if userInfo.get('reffred_by') else None
+            }
+            db.insert_one(new_user)
+            return True, reff_id
+        except Exception as e:
+            return False, "Error: " + str(e)
+
+    else:
+        raise TypeError("Unsupported database type")
