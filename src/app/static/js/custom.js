@@ -237,7 +237,7 @@ function getCount() {
 	  .then(response => response.json())
 	  .then(data => {
 		const countValueElement = document.querySelector('.totalFlags');
-		countValueElement.textContent = data.count_value;
+		countValueElement.textContent = "Total flag donated- "+data.count_value;
 	  })
 	  .catch(error => {
 		console.error('Error fetching count:', error);
