@@ -13,3 +13,7 @@ def about():
 @bp.route("/ourgoal")
 def gols():
     return render_template("/ourgoal/ourgoal.html")
+
+@bp.route("/contacts")
+def contacts():
+    return render_template("/contacts/contacts.html")
