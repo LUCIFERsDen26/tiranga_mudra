@@ -526,6 +526,7 @@ iframe{
 
 /* About section peragraph */
 .untree_co-section {
+  text-align: center;
   padding: 2rem 0; }
 
   .untree_co-section h2{
