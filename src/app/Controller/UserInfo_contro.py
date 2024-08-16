@@ -43,8 +43,8 @@ def add_user_to_db(userInfo):
             return False, "Error: User with this phone number already exists."
 
         # Check for referred_by
-        if userInfo.get('reffred_by'):
-            referrer_exists = db.search(User.reff_id == userInfo.get('reffred_by'))
+        if userInfo.get('reff_by'):
+            referrer_exists = db.search(User.reff_id == userInfo.get('reff_by'))
             if not referrer_exists:
                 return False, "Error: Referred Code, not found."
 
@@ -58,7 +58,7 @@ def add_user_to_db(userInfo):
                 'name': userInfo['name'],
                 'country': userInfo['country'],
                 'state': userInfo['state'],
-                'reff_by': userInfo.get('reffred_by') if userInfo.get('reffred_by') else None
+                'reff_by': userInfo.get('reff_by') if userInfo.get('reff_by') else None
             }
             db.insert(new_user)
             return True, reff_id
@@ -71,8 +71,8 @@ def add_user_to_db(userInfo):
             return False, "Error: User with this phone number already exists."
 
         # Check for referred_by
-        if userInfo.get('reffred_by'):
-            if not db.find_one({'reff_id': userInfo.get('reffred_by')}):
+        if userInfo.get('reff_by'):
+            if not db.find_one({'reff_id': userInfo.get('reff_by')}):
                 return False, "Error: Referred Code, not found."
 
         # Generate a unique reff_id
@@ -85,7 +85,7 @@ def add_user_to_db(userInfo):
                 'name': userInfo['name'],
                 'country': userInfo['country'],
                 'state': userInfo['state'],
-                'reff_by': userInfo.get('reffred_by') if userInfo.get('reffred_by') else None
+                'reff_by': userInfo.get('reff_by') if userInfo.get('reff_by') else None
             }
             db.insert_one(new_user)
             return True, reff_id
