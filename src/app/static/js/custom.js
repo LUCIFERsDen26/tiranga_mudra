@@ -112,13 +112,17 @@ document.addEventListener('DOMContentLoaded', function () {
 		//const pinCode = document.getElementById('pinCode');
 		const refCode = document.getElementById('refCode');
 		const errorMessage = document.getElementById('erroMessage');
+        console.log(country);
+
 
 		// Basic input validation
-		if (!firstName.value || !country.value || !phoneno.value) {//|| !state.value || !pinCode.value || !emailInput.value.toLowerCase()) {
+		if (!firstName.value || !country || !phoneno.value) {//|| !state.value || !pinCode.value || !emailInput.value.toLowerCase()) {
 			errorMessage.textContent = 'Please fill in all required fields';
 			return;
 		  }
 		
+
+
 		if (country.value === 'India') {
 			if(state.value === '') {
 			errorMessage.textContent = 'Please select a valid State';
