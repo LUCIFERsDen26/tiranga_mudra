@@ -57,6 +57,7 @@ def add_user_to_db(userInfo):
                 'phone_no': userInfo['phone_no'],
                 'name': userInfo['name'],
                 'country': userInfo['country'],
+                'state': userInfo['state'],
                 'reff_by': userInfo.get('reffred_by') if userInfo.get('reffred_by') else None
             }
             db.insert(new_user)
@@ -83,6 +84,7 @@ def add_user_to_db(userInfo):
                 'phone_no': userInfo['phone_no'],
                 'name': userInfo['name'],
                 'country': userInfo['country'],
+                'state': userInfo['state'],
                 'reff_by': userInfo.get('reffred_by') if userInfo.get('reffred_by') else None
             }
             db.insert_one(new_user)

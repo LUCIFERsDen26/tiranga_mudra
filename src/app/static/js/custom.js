@@ -107,8 +107,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		//const emailInput = document.getElementById('emailInput');
 		const firstName = document.getElementById('firstName');
 		const phoneno = document.getElementById('phoneNo');
-		const country = document.getElementById('country');
-		//const state = document.getElementById('state');
+		const country = document.querySelector('input[name="country"]:checked')		
+		const state = document.getElementById('state');		
 		//const pinCode = document.getElementById('pinCode');
 		const refCode = document.getElementById('refCode');
 		const errorMessage = document.getElementById('erroMessage');
@@ -119,10 +119,12 @@ document.addEventListener('DOMContentLoaded', function () {
 			return;
 		  }
 		
-		if (country.value === 'Select Country') { //|| state.value === 'Select State') {
-			errorMessage.textContent = 'Please select a valid country';
+		if (country.value === 'India') {
+			if(state.value === '') {
+			errorMessage.textContent = 'Please select a valid State';
 			return;
 		  }
+		}
 		
 		
 		//if (!validateEmail(emailInput.value.toLowerCase())){
@@ -139,11 +141,11 @@ document.addEventListener('DOMContentLoaded', function () {
 			name: firstName.value.toLowerCase(),
 			phone_no: phoneno.value,
 			country: country.value,
-			//state: state.value,
+			state: state.value,
 			//pin_code: pinCode.value,
 			reff_by: refCode.value,
 		  };
-
+		
 		
 		fetch('/submit', {
 			method: 'POST',

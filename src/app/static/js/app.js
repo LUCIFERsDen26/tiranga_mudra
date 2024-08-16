@@ -12,8 +12,8 @@ function loadCountries() {
     // Replace the default "Select Country" dropdown with radio buttons
     const radioGroup = document.querySelector('.radio-group');
     radioGroup.innerHTML = `
-        <label><input type="radio" name="country" value="India" /> India</label>
-        <label><input type="radio" name="country" value="Other" /> Other</label>
+        <label><input type="radio" name="country" value="India" id="country"/> India</label>
+        <label><input type="radio" name="country" value="Other" id="country"/> Other</label>
     `;
     
     // Add event listeners for the radio buttons to toggle the state dropdown
@@ -45,6 +45,7 @@ function loadStates(){
             data.forEach(state => {
                 const option = document.createElement('option');
                 option.value = state.iso2;
+                option.id = 'state'
                 option.textContent = state.name;
                 stateSelect.appendChild(option);
             });
