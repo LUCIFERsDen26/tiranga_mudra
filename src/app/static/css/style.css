@@ -102,7 +102,7 @@ a {
       padding: calc(4rem - 30px) 0 4rem 0; } }
   @media (min-width: 992px) {
     .hero {
-      padding: calc(8rem - 30px) 0 8rem 0; } }
+      padding: calc(7rem - 30px) 0 3rem 0; } }
   .hero .intro-excerpt {
     position: relative;
     z-index: 4; 
@@ -429,16 +429,12 @@ iframe{
       transition: .3s all ease; }
   .blog-section .post-entry .post-content-entry {
     padding-left: 15px;
-    padding-right: 15px; }
+    padding-right: 15px;
+  text-align: center; }
     .blog-section .post-entry .post-content-entry h3 {
-      font-size: 16px;
+      font-size: 28px;
       margin-bottom: 0;
-      font-weight: 600;
-      margin-bottom: 7px; }
-    .blog-section .post-entry .post-content-entry .meta {
-      font-size: 14px; }
-      .blog-section .post-entry .post-content-entry .meta a {
-        font-weight: 600; }
+      font-weight: 600;}
   .blog-section .post-entry:hover .post-thumbnail img, .blog-section .post-entry:focus .post-thumbnail img {
     opacity: .7; }
 
@@ -529,7 +525,16 @@ iframe{
       font-size: 14px !important; }
 
 .untree_co-section {
-  padding: 7rem 0; }
+  padding: 2rem 0; }
+
+  .untree_co-section h2{
+    margin-bottom: 2rem !important;
+  }
+.untree_co-section p{
+  font-size: 20px;
+  /*padding: 0px 100px 0px 100px;*/
+  margin: 0% !important;
+}
 
 .form-control {
   height: 50px;
@@ -640,8 +645,9 @@ font-family: Arial, sans-serif;
   transform: translate(-50%, -50%);
   background: #fff;
   padding: 20px;
+  color: black;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 30);
 }
 
 .popup-content {
@@ -650,6 +656,7 @@ font-family: Arial, sans-serif;
     flex-direction: column;
     align-items: stretch;
 }
+
 .popup-content-submit {
   text-align: center;
   display: flex;
@@ -690,9 +697,17 @@ font-family: Arial, sans-serif;
   width: 100%;
   padding: 2px;
   margin: 4px 0;
-  border: 1px solid #ddd;
+  /* border: 1px solid #86892da8; */
   border-radius: 4px;
   color: #000000;
+  border: none;
+}
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+select:focus {
+    box-shadow: 0 0 10px rgba(255, 0, 0, 1); /* Shadow color and spread */
+    outline: none; /* Remove default outline */
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -725,7 +740,7 @@ font-family: Arial, sans-serif;
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .popup {
-  width: 60%;
+  width: 40%;
 } }
 @media only screen and (min-width: 1200px) {
   .popup2 {
