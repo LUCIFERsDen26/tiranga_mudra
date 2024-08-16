@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Parisienne&display=swap');
+
 body {
   overflow-x: hidden;
   position: relative; }
@@ -524,17 +524,18 @@ iframe{
     .footer-section .border-top.copyright {
       font-size: 14px !important; }
 
+/* About section peragraph */
 .untree_co-section {
   padding: 2rem 0; }
 
   .untree_co-section h2{
     margin-bottom: 2rem !important;
   }
-.untree_co-section p{
-  font-size: 20px;
-  /*padding: 0px 100px 0px 100px;*/
-  margin: 0% !important;
-}
+    .untree_co-section p{
+      font-size: 20px;
+      /* padding: 0px 100px 0px 100px; */
+      margin: 0% !important;
+    }
 
 .form-control {
   height: 50px;
@@ -851,4 +852,27 @@ select:focus {
   border-color: #2f2f2f;
   width: fit-content;
   margin-top: 5px;
+}
+
+.updates-section .changes{
+  text-align: center;
+  margin-top: 2rem;
+}
+.updates-section h1 {
+  font-size: 24px;
+  color: #4CAF50;
+  margin-bottom: 10px;
+}
+.updates-sectionh2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+}
+.updates-section p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.updates-section .highlight {
+  color: #4CAF50;
+  font-weight: bold;
 }
